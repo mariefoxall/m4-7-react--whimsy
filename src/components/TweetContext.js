@@ -51,6 +51,7 @@ export const TweetProvider = ({ children }) => {
         isLiked,
         handleToggleLike,
         handleToggleRetweet,
+        isRetweeted,
       }}
     >
       {children}

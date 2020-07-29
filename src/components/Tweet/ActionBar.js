@@ -5,11 +5,14 @@ import LikeButton from "../LikeButton";
 import Action from "./Action";
 import TweetActionIcon from "./TweetActionIcon";
 import { TweetContext } from "../TweetContext";
+import ScaleIn from "../LikeButton/ScaleIn";
 
-const ActionBar = () => {
+import PoppingCircle from "../LikeButton/PoppingCircle";
+
+const ActionBar = ({ size = 40 }) => {
   const {
-    isRetweetedByCurrentUser,
-    isLikedByCurrentUser,
+    isRetweeted,
+    isLiked,
     handleToggleLike,
     handleToggleRetweet,
   } = React.useContext(TweetContext);
@@ -19,10 +22,24 @@ const ActionBar = () => {
         <TweetActionIcon kind="reply" />
       </Action>
       <Action onClick={handleToggleRetweet} color="rgb(23, 191, 99)" size={40}>
-        <TweetActionIcon
-          kind="retweet"
-          color={isRetweetedByCurrentUser ? "rgb(23, 191, 99)" : undefined}
-        />
+        <Background>
+          {isRetweeted && (
+            <PoppingCircle size={size} color="rgb(23, 191, 99)" />
+          )}
+        </Background>
+        {isRetweeted ? (
+          <ScaleIn>
+            <TweetActionIcon
+              kind="retweet"
+              color={isRetweeted ? "rgb(23, 191, 99)" : undefined}
+            />
+          </ScaleIn>
+        ) : (
+          <TweetActionIcon
+            kind="retweet"
+            color={isRetweeted ? "rgb(23, 191, 99)" : undefined}
+          />
+        )}
       </Action>
       <Action onClick={handleToggleLike} color="rgb(224, 36, 94)" size={40}>
         <LikeButton />
@@ -39,6 +56,10 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   height: 48px;
+`;
+const Background = styled.div`
+  z-index: 0;
+  position: absolute;
 `;
 
 export default ActionBar;
