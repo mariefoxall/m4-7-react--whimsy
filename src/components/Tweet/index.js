@@ -6,27 +6,14 @@ import ActionBar from "./ActionBar";
 import { TweetContext } from "../TweetContext";
 
 const Tweet = () => {
-  const {
-    displayName,
-    username,
-    avatarSrc,
-    tweetContents,
-    isRetweetedByCurrentUser,
-    isLikedByCurrentUser,
-  } = React.useContext(TweetContext);
+  const { tweetContents, date } = React.useContext(TweetContext);
   return (
     <Wrapper>
-      <Header
-        displayName={displayName}
-        username={username}
-        avatarSrc={avatarSrc}
-      />
+      <Header />
       <TweetContents>{tweetContents}</TweetContents>
+      <Timestamp>{date}</Timestamp>
       <Divider />
-      <ActionBar
-        isRetweetedByCurrentUser={isRetweetedByCurrentUser}
-        isLikedByCurrentUser={isLikedByCurrentUser}
-      />
+      <ActionBar />
       <Divider />
     </Wrapper>
   );

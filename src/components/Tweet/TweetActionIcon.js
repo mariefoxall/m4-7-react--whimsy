@@ -28,7 +28,7 @@ const PATHS = {
 };
 
 const TweetActionIcon = ({ size = 24, kind, color }) => {
-  console.log("path", PATHS[kind]);
+  // console.log("path", PATHS[kind]);
   return (
     <svg width={size} height={size} viewBox="0 0 24 24">
       {PATHS[kind]}

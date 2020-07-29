@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import Tweet from "./Tweet";
 
-import { TweetContext } from "./TweetContext";
-
 const App = () => {
   return (
     <Wrapper>
